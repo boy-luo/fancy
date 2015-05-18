@@ -1,0 +1,388 @@
+body{
+padding:8px;
+text-align:left;
+width:1335px;
+border:solid 4px;
+}
+
+
+/*   最外层的，包含所有盒子的盒子	
+*/  
+#out{
+position:relative; 
+margin-top:5px;
+margin-left:1px;
+width:100%;
+float:left;
+text-align:left;
+border:solid 1px;
+}
+
+/*   顶部的包含鼓励盒子的大盒子	   */
+#topface{
+position:relative;
+margin-top:14px;
+margin-bottom:14px;
+margin-left:4px;
+width:100%;
+text-align:left;
+border:solid 1px;
+float:left;
+}
+
+/*   顶部的鼓励盒子	   */
+#topencourage{
+padding:10px;
+position:relative;
+margin-top:4px;
+margin-left:4px;
+width:40%;
+height:150px;
+text-align:left;
+border:solid 1px;
+background:#9370db;
+float:left;
+overflow:auto;
+}
+
+/*   其他的提示信息！8a2be2	
+clear:both;  
+ */
+#hint{
+position:relative;
+margin-top:4px;
+margin-left:4px;
+padding:10px;
+width:55%;
+height:150px;
+text-align:left;
+border:solid 1px;
+background:#87cefa;
+float:left;
+overflow:auto;
+}
+
+
+/*   表单所处的盒子	   */
+#tables{
+position:relative;
+margin-top:2px;
+margin-left:1px;
+width:1335px;
+/* 底部外边距
+float:up;
+*/
+text-align:center;
+background:#5f9ea0;
+border:solid 1px;
+float:left;
+}
+
+
+/*   一个任意宽，高的包含一些盒子组的盒子	   */
+#the_magic{
+position:relative;
+float:left;
+margin-top:2px;
+margin-left:1px;
+text-align:left;
+background:#5f9ea0;
+border:solid 1px;
+}
+
+
+/*   表单盒子的左边的盒子	   */
+#tableleft{
+position:relative;
+margin-top:1px;
+margin-left:1px;
+width:48%;
+height:400px;
+text-align:left;
+border:solid 1px;
+overflow:auto;
+float:left;
+}
+
+/*   表单盒子的右边的盒子	   */
+#tableright{
+position:relative;
+margin-top:1px;
+margin-left:1px;
+width:48%;
+height:400px;
+text-align:left;
+border:solid 1px;
+overflow:auto;
+float:left;
+}
+
+/*   数据显示区的最外层包含所有的盒子	   */
+#datas{
+position:relative;
+margin-top:4px;
+width:100%;
+text-align:left;
+border:solid 1px;
+float:left;
+}
+
+#data_result{
+position:relative;
+margin-top:1px;
+width:33%;
+background:#66cdaa;
+text-align:left;
+border:solid 1px;
+float:left;
+}
+
+
+/*   原始数据显示区的盒子	
+width:120px;   */
+#dataorigin{
+position:relative;
+margin-top:1px;
+width:30%;
+height:620px;
+background:#66cdaa;
+text-align:left;
+border:solid 1px;
+float:left;
+}
+
+#method_history{
+position:relative;
+margin-top:1px;
+width:30%;
+background:#66cdaa;
+text-align:left;
+border:solid 1px;
+float:left;
+}
+
+#method_line{
+position:relative;
+margin-top:1px;
+width:390px;
+background:#66cdaa;
+text-align:left;
+border:solid 1px;
+float:left;
+}
+
+
+/* 装一个数字的历史情况的盒子的类 */
+.number_history{
+position:relative;
+margin-top:1px;
+width:155px;
+background:#66cdaa;
+text-align:center;
+border:solid 1px;
+float:left;
+}
+
+/* 把水平的多个数字的盒子装到一起的盒子的类 */
+.numbers_history{
+position:relative;
+margin-top:1px;
+
+background:#66cdaa;
+text-align:center;
+border:solid 3px;
+float:left;
+}
+
+
+
+/* 装一个数字的历史情况的盒子的类 */
+.number_history2{
+position:relative;
+margin-top:1px;
+width:85px;
+
+background:#66cdaa;
+text-align:center;
+border:solid 1px;
+float:left;
+}
+
+/* 把水平的多个数字的盒子装到一起的盒子的类 */
+.numbers_history2{
+position:relative;
+margin-top:1px;
+
+background:#66cdaa;
+text-align:center;
+border:solid 3px;
+float:left;
+}
+
+#method_history_id{
+position:absolute;
+margin-top:1px;
+right:50px;
+width:125px;
+background:#66cdaa;
+text-align:center;
+border:solid 1px;
+}
+
+
+#the_final_war{
+position:relative;
+float:left;
+margin-top:3px;
+width:125px;
+background:#66cdaa;
+text-align:center;
+border:solid 1px;
+}
+
+
+#the_final_war_good{
+position:relative;
+float:left;
+margin-top:3px;
+width:125px;
+background:#66cdaa;
+text-align:center;
+border:solid 1px;
+}
+
+#location_num{
+position:relative;
+margin-top:1px;
+padding:5px;
+width:200px;
+background:#66cdaa;
+text-align:left;
+border:solid 1px;
+float:left;
+}
+
+#location_nums{
+position:relative;
+margin-top:1px;
+padding:5px;
+width:100%;
+background:#66cdaa;
+text-align:left;
+border:solid 1px;
+float:left;
+}
+
+/*   要求的数据的显示区的盒子	
+width:120px;   */
+#dataask{
+position:relative;
+margin-top:1px;
+width:36%;
+background:#7b68ee;
+text-align:left;
+border:solid 1px;
+float:left;
+}
+
+/*   要求的数据的显示区的盒子	
+width:120px;   */
+#datalast{
+position:relative;
+margin-top:1px;
+width:30%;
+height:620px;
+background:#708090;
+text-align:left;
+border:solid 1px;
+float:left;
+}
+
+/*   要求的数据的显示区的盒子	
+width:120px;   
+#datalas{
+position:relative;
+margin-top:1px;
+width:20%;
+height:620px;
+text-align:left;
+border:solid 1px;
+float:left;
+}
+*/
+
+
+
+/* 
+头部导航台
+margin-top:3px;
+float:;
+*/
+#askTable{
+margin-left:0;
+margin-bottom:6px;
+margin-bottom:8px;
+width:100%;
+height:175px;
+border:solid 3px;
+text-align:left;
+background:#099;
+overflow:auto;
+position:relative;
+float:left;
+}
+
+
+#methods{
+	padding:10px;
+	margin-left:6px;
+	margin-bottom:8px;
+	width:100%;
+	border:solid 3px;
+	text-align:left;
+	background:#099;
+	overflow:auto;
+	position:relative;
+	float:left;
+}
+
+
+/* 
+头部导航台
+margin-top:3px;
+float:;
+*/
+#navigationTop{
+margin-left:0;
+margin-bottom:8px;
+width:100%;
+border:solid 3px;
+text-align:left;
+background:#099;
+position:relative;
+float:left;
+}
+
+button:hover {
+background-color:#099;
+font-size:50px;
+position:relative;
+left:1px;
+top:4px;
+}
+
+button:active {
+background-color:black;
+}
+
+/* 底部的网站声明 */
+#foot{
+margin-left:0;
+margin-top:2px;
+width:100%;
+border:solid 2px;
+text-align:center;
+position:relative;
+float:left;
+background:#d2691e;
+}
