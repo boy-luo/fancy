@@ -17,12 +17,13 @@ include ("functionsarrayget.php");
 ?>
 </head>
 
-
 <body>
 <?php
 $timestart=microtime();
 //包含统一的头部导航文件
 //include ("navigation.php");
+// 测试提交
+// 测试提交
 ?>
  ^:^<br>
 <a name="theTop"></a>
