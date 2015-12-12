@@ -60,6 +60,15 @@ include ("conn.php");
 	<a href="data.php" target="_blank">
 	<button style="height: 40px; font-size:19px; color:blanck;" >数据处理首页</button></a>
 	
+	<a href="final_war_pre2015-7-1same3-5num.php" target="_blank">
+	<button style="height: 40px; font-size:19px; color:blanck;" >2015-7-1有3-5个相同final_war_pre.php最后的战役（优化前）</button></a>
+	
+	<a href="final_war_pre2015-6-30.php" target="_blank">
+	<button style="height: 40px; font-size:19px; color:blanck;" >最后的战役（优化前）final_war_pre2015-6-30</button></a>
+	
+	<a href="history_data_1_33.php" target="_blank">
+	<button style="height: 40px; font-size:19px; color:blanck;" >历史数据1-33位置排列</button></a>
+	
 	<a href="final_war_pre.php" target="_blank">
 	<button style="height: 40px; font-size:19px; color:blanck;" >最后的战役（优化前）</button></a>
 

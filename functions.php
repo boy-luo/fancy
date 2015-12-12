@@ -843,27 +843,154 @@ function num_appear_id_infor_core($num){
 			
 		}
 		++ $i;
-			// echo '-=-=-=-';
-		
-		//输出测试
-		// echo count($row)."<br>";
-		// echo $row[0]."<br>";
-		// echo $row[1]."<br>";
-		// echo $row[2]."<br><br>";
-		
-		//测试
-		// echo $i."<br><br>";
-		// $i ++;
-		
-		// foreach($row as $key=>$value){
-			// //$valueReturn .= $value." ";
-			// //echo $key."----";
-			// //echo $value."\t";
-			// echo $key.'-->'.$value."<br>";
-		// }
 	}
 }
+
+
+/* 
+	输出简洁的单个数字的所有历史间隔进行分析，
+	并返回数组
+	2015.7.14
+ */
+function num_appear_interval($num){
+	$sql = "SELECT id, one, two, three, four, five, six, odd_even_id, odd_even_proportion_id, divide_three_id FROM data_core ";// by goods_id desc limit ". ($page-1)*$page_size .", $page_size";    
+	$result = mysql_query($sql);
+	$pre_id = 1;    //记录上一组数组的编号
+	$this_interval = 0;  //记录间隔期数
+	$this_id = 0;
 	
+	echo $num.""."的出现间隔分析："."<br>";
+	$i = 0;
+	$interval_i = 0;
+	while($this_row = mysql_fetch_row($result))
+	{
+		$row = $this_row;
+		//记录当前组数组的编号
+		$this_id = $row[0];
+		
+		//判断是否有这个数
+		if($num == $row[1] || $num == $row[2] || $num == $row[3] || $num == $row[4] || $num == $row[5] || $num == $row[6])
+		{
+			//计算间隔期数
+			$interval[$this_id]['interval'] = $this_id - $pre_id - 1;  // 用于作为数组进行后续其他的操作
+			$interval_list[]=array('id'=>$this_id, 'interval'=>$interval[$this_id]['interval']);
+			
+			$this_interval = $this_id - $pre_id - 1;
+			
+			//更新记录作为下一组数组的‘上一组数组的编号’
+			$pre_id = $this_id;
+			if($this_interval < 8)
+			{
+				echo "".$this_interval."<br>";
+			}else if($this_interval > 15){
+				echo "<br><br>";
+				echo "<font style='color:red;'>"."".$this_interval."</font><br>";
+			}else{
+				echo "<br><br>";
+				echo "<font style='color:blue;'>"."".$this_interval."</font><br>";
+			}
+		}else if($i == mysql_num_rows($result)-1){
+			
+			//计算间隔期数
+			$interval[$this_id]['interval'] = $this_id - $pre_id - 1;  // 用于作为数组进行后续其他的操作
+			$interval_list[]=array('id'=>$this_id, 'interval'=>$interval[$this_id]['interval']);
+			
+			//计算间隔期数
+			$this_interval = $this_id - $pre_id;
+			echo "<font style='color:green;'>"." ".$this_interval."次没出</font><br>";
+		}
+		++ $interval_i;
+		++ $i;
+	}
+	$interval['list'] = $interval_list;
+	return $interval;
+}
+
+/* 
+	给定id和间隔的数组，一个当前的id和当前这个数字的间隔，返回与本次间隔相同的地方的id和间隔。
+	参数：整个所有数据的数组 $interval_arr--二维，当前组的数据 $current_interval--一维，数组二维的键值 $key--变量
+	2015.7.16
+*/
+function same_interval($interval_arr,$current_interval, $key){
+	$same_inter = array();
+	$same_i = 0;
+	
+	$intervals = $interval_arr['list'];  // 为了能查看前4次的间隔次数情况，专门记录了一个
+	$inter_list_id = 0;   // 作为下标
+	
+	foreach($interval_arr as $the_id=>$value){
+		// if($value['interval'] == $current_interval['interval']){
+		if($value[$key] == $current_interval[$key]){
+			// $same_inter['same_like'] = ''
+			$same_inter[$the_id][$key] = $value[$key];   // 返回与当前正在处理的数组
+			
+			$same_inter[$same_i][$key] = $value[$key];   // 用于前4组的比较
+			$same_i ++;
+			echo "".$the_id."<br>";
+			
+			// if($inter_list_id > 5){
+				echo $same_inter[$the_id][$key].'-';
+				for($i=1; $i<5; $i++) // 输出各处前4次的情况进行查看
+				{
+					echo $intervals[$inter_list_id-$i][$key].'-';
+				}
+				echo "<br>";
+			// }
+			$inter_list_id ++;
+		}
+	}
+	
+			// for($i=1; $i<5; $i++) // 输出各处前4次的情况进行查看
+			// {
+				// echo $interval_arr[$current_interval['id']-$i][$key].'<br>';
+			// }
+			// echo '----<br><br>';
+			
+	// foreach($same_inter as $the_id=>$value){
+		// echo '#'.$the_id.'--'.$value[$key];
+	// }
+	return $same_inter;
+}
+
+/* 
+	给定历史间隔与此次间隔相同的数组，总结历史各处与本次间隔相同的地方的之前4组的间隔情况，
+	是否与此次的对应的前4组间隔是否相似
+	参数：当前数字的所有历史间隔的数组，历史间隔相同的id数组--二维，当前正在预测的组的id和间隔--一维，数组的二维的键值名称--变量。
+	2015.7.17
+ */
+function same_like_interval($interval_arr, $same_interval_arr,$current_interval, $key){
+	$same_inter = array();
+	// foreach($same_interval_arr as $the_id=>$value){
+		// echo '<br>'.$the_id.'--'.$value[$key];
+	// }
+	foreach($same_interval_arr as $the_id=>$value){
+		$same_count = 0;
+		for($i=1; $i<5; $i++)
+		{
+			echo $interval_arr[$the_id-$i][$key].'-'.$interval_arr[($current_interval['id']-$i)][$key].'<br>';
+			// echo $interval_arr[($current_interval['id']-$i)][$key].'<br>';
+			if($interval_arr[$the_id-$i][$key] == $interval_arr[($current_interval['id']-$i)][$key]){
+				$same_count ++;
+			}
+			$interval_str .=  $interval_arr[($current_interval['id']-$i)][$key];
+		}
+		echo $same_count;
+		if($same_count > 2){
+			// echo $same_count;
+			$same_like_inter_count['same'][$the_id][$key] = $value[$key];
+			$same_like_inter_count['same_string'] .= $value[$key].'<br>';  // 拼接字符串用于视图输出到一个盒子查看
+			
+		}else if($same_count == 2){
+			$same_like_inter_count['like'][$the_id][$key] = $value[$key];
+			$same_like_inter_count['like_string'] .= $value[$key].'<br>';
+		}else if($same_count < 2){
+			$same_like_inter_count['different'][$the_id][$key] = $value[$key];
+			$same_like_inter_count['different_string'] .= $value[$key].'<br>';
+		}
+	}
+	
+	return $same_like_inter_count;
+}
 	
 
 // ---------------修改函数内部制定的相同的个数，和函数里的数据表名称（当计算量太大时还需要修改循环条件，分次完成）--------------------------------------------
