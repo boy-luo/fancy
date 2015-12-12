@@ -1,41 +1,21 @@
-最原始数据备份
-olddata.txt
-最原始的24法则的备份
-olddata.txt
+最原始数据备份   olddata.txt
+最原始的24法则的备份   olddata.txt
 
 页面站点
 data.php(写文档之后新建立的数据处理站点)
 debate.php（之前的）
 
-
-
-
 数据：
-我的原始数据
-datamy.txt
-
-原始数据处理成的数组
-arrymy.txt
+我的原始数据   datamy.txt
+原始数据处理成的数组   arrymy.txt
 
 方法：
-24法则
-method24.txt
-
-我的方法/法则
-methodmy.txt
-
-电脑的方法
-methodcomputer.txt
-
-
-处理的结果
-result.txt
-
-选取的部分数据
-datapart.txt
-
-突然的灵感与想法---方法改进，增加等
-inspiration.txt
+24法则   method24.txt
+我的方法/法则   methodmy.txt
+电脑的方法   methodcomputer.txt
+处理的结果    result.txt
+选取的部分数据   datapart.txt
+突然的灵感与想法---方法改进，增加等    inspiration.txt
 
 
 
