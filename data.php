@@ -11,9 +11,6 @@
 //include ("config.php");
 //include ("arraydirect.php");
 //include ("functions.php");
-
-//包含统一的头部导航文件
-//include ("navigation.php");
 ?>
 </head>
 <body>
@@ -24,71 +21,17 @@
 $timestart=microtime();
 //echo $test;
 ?>
-<?php
-//----------特殊操作之用
-//重置
-//SetSessions();
-//查看成员
-//查看成员
-//查看成员
-//CheckSessions();
-//2.14.16.18.28.31. 5.8.16.19.27.28
-//8.9.11.16.21.24
-//6.10.11.14.17.33..1.6.13.29.31.33..3.6.9.11.25.29...2.4.11.13.25.33
-?>
 <div id="out">
-
-
-
 <?php
-
 //包含统一的头部导航文件
 include ("navigation.php");
-
-//$test = 0063;
-/*
-$test[0] = 02;
-$test[1] = 04;
-$test[3] = 05;
-$test[2] = 08;
-echo $test[2];
-echo $test[1];
-echo $test[0];
-echo $test[3];
-*/
-
-//把核心数据此内容数据库 失败----01-09 的问题
-//把核心数据此内容数据库
-//data_core();
-
-// $this_array = array(2,4,1,3,6,5);
-// $arrays_statistics_with = array(1,2,3,5,6,7,8);
-// $a = array_intersect($this_array, $arrays_statistics_with);
-// foreach($a as $key=>$value)
-// {
-	// echo "下标为：".$key."的数组相同的次数为：----".$value."次！<br>";
-	echo "数组详细信息为：".$arrayMesage[$key]."<br><br><br>";
-	echo $value."<br>";
-// }
+echo "数组详细信息为：".$arrayMesage[$key]."<br><br><br>";
+echo $value."<br>";
 ?>
 
  ^:^<br><br>
 以下是一些常规信息：<br>
 <div id="datas">
-	<!--
-	<div >
-		左边表单：操作<br>
-		<form action="" method="post" style="border=5px;" name="Selectform">
-			<input type="submit" name="nextTime"  value="创建下一个保存处理结果的文件夹" />
-			<input type="submit" name="nextDispose"  value="创建下一个处理结果的存储txt" />
-			<input type="submit" name="ToStatistics"  value="统计历史   有5个相同和数据的数组" />
-			<input type="submit" name="randData"  value="一组随机数，并验证历史" />
-			<input type="submit" name="sub"  value="创建此名称的文件" /><br>
-			<input type="text" name="selectWords"  value="" />输入查询的数组<br>
-			<input type="submit" name="sub"  value="提交" />
-		</form>
-	</div>
-	-->
 	<div id="dataorigin">
 		原始数据：<br>
 		<br>
@@ -119,7 +62,6 @@ echo $test[3];
 		echo "加密的md5：".md5(123).'<br>';
 		echo "加密的md5：".md5(3433).'<br>';
 		echo "多次加密的md5：".md5(md5(md5(md5(md5(123))))).'<br>';
-		// echo md5(202cb962ac59075b964b07152d234b70).'<br>';
 		
 		// ---------------修改相同的个数，和函数里的数据表名称（当计算量太大时还需要修改循环条件，分次完成）--------------------------------------------
 		//定义一个，避免在没有重复数据的时候后边的输出报错
@@ -127,37 +69,36 @@ echo $test[3];
 		$sameCount[1]=0;
 		echo "<br>循环次数----即是数据总条数为：".count($nowArray)."----<br>";
 		
-			//统计有$sameN个相同数据的数组
-			$sameN = 2;
+		//统计有$sameN个相同数据的数组
+		$sameN = 2;
 
-			//每组数据有6个数据
-			$N=6;
-			
-			//计算数据的不同个数
-			$diffrentN = $N-$sameN;
+		//每组数据有6个数据
+		$N=6;
+		
+		//计算数据的不同个数
+		$diffrentN = $N-$sameN;
 
-			// $arrayMesage是有数据详细信息的直接数组，在专门的页面里，是被包含到此页面直接用的
-			// $nowArray是有数据的核心处理数据的直接数组，在专门的页面里，是被包含到此页面直接用的
-			//调用统计函数实现统计
-			// same_n_statistics($nowArray,$arrayMesage,$N,$sameN);
-			
-			//存入数据库作为分析
-			// statistics_same_n_array($nowArray,$arrayMesage,$N);
+		// $arrayMesage是有数据详细信息的直接数组，在专门的页面里，是被包含到此页面直接用的
+		// $nowArray是有数据的核心处理数据的直接数组，在专门的页面里，是被包含到此页面直接用的
+		//调用统计函数实现统计
+		// same_n_statistics($nowArray,$arrayMesage,$N,$sameN);
+		
+		//存入数据库作为分析
+		// statistics_same_n_array($nowArray,$arrayMesage,$N);
 
-			//输出各组相同数组的相同次数
-			// sameCount记录的是有重复的数组的id
-			if(count($sameCount) != 1)
+		//输出各组相同数组的相同次数
+		// sameCount记录的是有重复的数组的id
+		if(count($sameCount) != 1)
+		{
+			foreach($sameCount as $key=>$value)
 			{
-				foreach($sameCount as $key=>$value)
-				{
-					echo "下标为：".$key."的数组相同的次数为：----".$value."次！<br>";
-					echo "数组详细信息为：".$arrayMesage[$key]."<br><br><br>";
-					//echo $value."<br>";
-				}
-			}else{
-				echo "抱歉。先生，现目前还没有重复".$sameN."个数据的数组！<br>";
+				echo "下标为：".$key."的数组相同的次数为：----".$value."次！<br>";
+				echo "数组详细信息为：".$arrayMesage[$key]."<br><br><br>";
+				//echo $value."<br>";
 			}
-			
+		}else{
+			echo "抱歉。先生，现目前还没有重复".$sameN."个数据的数组！<br>";
+		}
 		
 		echo "可以进行统计指定有几个是相同的数组<br>";
 		//点击对数据进行统计，找出有一定个数相同的数组

@@ -300,15 +300,8 @@ function addOneId(eleId){
 				// echo "id为".$the_id.'的第'.$key2.'的数组的偏移后趋势为： '.$value2.'<br>';
 			// }
 			// }
-			
-			
 		}
 		
-		
-		
-		// -------------------------------------------------------------
-		// -------------------------------------------------------------
-		// -------------------------------------------------------------
 		echo '<div id="the_magic">';
 		$same_ids = same_n_intersect_this_array($test_array, $datas, $same_n, $array_n);
 		echo '比较数组为：';
@@ -344,9 +337,11 @@ function addOneId(eleId){
 		
 		// 每个10组间要求要有满足相同元素个数的最少组数
 		$group_least = 4;
-		$the_request .= '每个10组间要求要有'.$group_least.'组满足相同元素个数的组才在此输出显示；<br><br>';
+		$the_request .= '每个10组间要求要有'.$group_least.'组满足相同元素个数的组才在此输出显示；<br>';
 		$the_request .= '要求找到与当前测试组有'.$find_same_n.'个以上相同元素的历史ID；<br>';
-		$the_request .= '一共有'.$same_ids_count.'组满足有'.$find_same_n.'个相同元素个数的历史ID；<br><br>';
+		$the_request .= '一共有'.$same_ids_count.'组满足有'.$find_same_n.'个相同元素个数的历史ID：<br>';
+		echo '<br><br>';
+		echo $the_request;
 		
 		foreach($same_ids as $key=>$the_id)
 		{
@@ -410,7 +405,7 @@ function addOneId(eleId){
 			if($total >= $group_least)
 			{
 				echo '<div id="the_final_war_good">';
-				echo $the_request;
+				// echo $the_request;
 				echo '当前 id为：'.$the_id.'<br><br>';
 				$the_quest = '';
 				// for($j=0; $j<($the_id+1); $j++){
@@ -446,66 +441,48 @@ function addOneId(eleId){
 					}
 				}else{
 					for($j=0; $j<($the_id+1); $j++){
-						// echo $test_array[$j].',';
-						// $this_id = $the_id - $j;
-						// $this_array_id = $the_array_id - $j;
-						// $same_numbers = array_intersect($datas[$this_array_id], $datas[$this_id]);
 						$same_numbers = array_intersect($datas[$the_array_id - $j], $datas[$the_id - $j]);
 						$same_n = count($same_numbers);
 						if($same_n >= 3)
 						{
 							++ $total;
-							// echo '<font color="#aaggss" size="5px">相同元素个数：'.$same_n.'</font><br>';
 							echo '<font color="#aaggss">相同元素个数：'.$same_n.'</font><br>';
 						}else{
 							echo '相同元素个数：'.$same_n.'<br>';
 						}
 					}
 				}
-							// $the_quest .= '相同元素个数：'.$same_n.'个；';
 				
 				// 合并之后的5组，看看共同出现了哪些
 				$conbin_array[$conbin_i] = array();
 				for($j=0; $j<5; $j++){
-					// $conbin_array[$conbin_i] += $datas[$the_id + 1 + $j];
 					$conbin_array[$conbin_i] = array_merge($conbin_array[$conbin_i], $datas[$the_id + 1 + $j]);
-					// $conbin_array[$conbin_i] = array_merge($conbin_array[$conbin_i], $datas[$the_id + 1 + $j]);
 				}
 				echo '</div>';
-				
 				++ $conbin_i;
 			}
 		}
 		echo '</div>';
-		
-		// -------------------------------------------------------------
-		// -------------------------------------------------------------
-		// -------------------------------------------------------------		
-		
-		
-		
+
 		// 测试差集----不能用差集，不符合这里的需要
-					// $diffrent_array[0] = array(2,3,5,7,8);
-					// $diffrent_array[1] = array(2,4,5,8,9);
-						// 求差集
-						// $diffrent_array = array_diff($diffrent_array[0], $diffrent_array[1]);
-						// echo '+++++';
+		// $diffrent_array[0] = array(2,3,5,7,8);
+		// $diffrent_array[1] = array(2,4,5,8,9);
+			// 求差集
+			// $diffrent_array = array_diff($diffrent_array[0], $diffrent_array[1]);
+			// echo '+++++';
 		// foreach($diffrent_array as $key1=>$the_number)
-						// {
-							// echo $the_number.',';
-						// }
-						
+		// {
+			// echo $the_number.',';
+		// }
+		
 						
 		// 如果得到结果数组，就遍历输出
 		if( is_array($same_count))
 		{
-			
 			// 用于后面得到较满意地方的合并数组最为键值使用
 			$conbin_i = 0;
-		
 			echo '<div id="the_magic">';
-			// foreach($same_count[$the_id] as $id_key=>$count_this_array)
-			
+
 			// $same_count与这一期有满足相同个数的各个id处的情况，
 			// $count_array是每个id的前10组--每组得到的与其前后6组的相同个数形成的数组
 			foreach($same_count as $id_key=>$count_this_array)
@@ -523,8 +500,6 @@ function addOneId(eleId){
 							// echo "当前 id为：".($id_key - $key1).'。<br>';
 							if($the_count >= 3)
 							{
-								// ++ $total;
-								// echo '<font color="#aaggss" size="5px">相同元素个数：'.$same_n.'</font><br>';
 								// echo '<font color="#aaggss">第'.$key1.'：的数组的偏移后趋势为： '.$the_count.'</font><br>';
 								echo '<font color="#aaggss">第'.$key1.'组，在历史前后6组中，满足要求：的组数有： '.$the_count.'组</font><br>';
 								// echo '<font color="#aaggss">相同元素个数：'.$same_n.'</font><br>';
@@ -537,8 +512,6 @@ function addOneId(eleId){
 						}
 						echo '<br><br>';
 					echo '</div>';
-					
-					
 					echo '<div id="method_line">';
 					
 					// 合并之后的5组，看看共同出现了哪些
@@ -548,23 +521,17 @@ function addOneId(eleId){
 					// 初始化差集数组
 					// $diffrent_array[$conbin_i] = $datas[$id_key + 1];
 					$diffrent_array[$conbin_i] = array();
-					// echo $id_key.'--';
 					for($j=0; $j<5; $j++){
-						// $conbin_array[$conbin_i] += $datas[$id_key + 1 + $j];
 						$conbin_array[$conbin_i] = array_merge($conbin_array[$conbin_i], $datas[$id_key + 1 + $j]);
 						// $conbin_array[$conbin_i] = array_merge($conbin_array[$conbin_i], $datas[$id_key + 1 + $j]);
-						
 						
 						// 求差集----错的，不能用
 						//  ----不能用差集，不符合这里的需要，只返回数组1里面的不同的值，数组2 中的丢失了。
 						// $diffrent_array[$conbin_i] = array_diff($diffrent_array[$conbin_i], $datas[$id_key + 1 + $j]);
 						
-						
 						// 查看分别与后面5组数组的 交集情况
 						$same_numbers = array_intersect($datas[$id_key + 1 + $j], $datas[$the_array_id]);
 						$same_n = count($same_numbers);
-						// echo "共同元素有：".$same_n." 个。".'<br>';
-						// echo "与此组的共同元素有：".$same_n." 个。".'<br>';
 						echo "与此组的共同元素有：".$same_n." 个。".'';
 						foreach($same_numbers as $key1=>$the_number)
 						{
@@ -594,8 +561,6 @@ function addOneId(eleId){
 					$same_numbers = array_intersect($conbin_array[$conbin_i], $datas[$the_array_id]);
 					$same_numbers = array_unique($same_numbers);
 					$same_n = count($same_numbers);
-					// echo "共同元素有：".$same_n." 个。".'<br>';
-					// echo "与此5组数组的并集的共同元素有：".$same_n." 个。".'<br>';
 					echo "与此5组数组的并集的共同元素有：".$same_n." 个。".'';
 					foreach($same_numbers as $key1=>$the_number)
 					{
@@ -618,20 +583,12 @@ function addOneId(eleId){
 		for($j=0; $j<5; $j++){
 			$this_conbin_array = $this_conbin_array+$datas[$the_array_id + 1 + $j];
 		}
-		// $this_conbin_array = $datas[$the_array_id + 1];
-		// $this_conbin_array = $datas[$the_array_id + 2];
-		
-		
 		echo '<div id="the_magic">';
-			
-			// echo '正在进行分析的数组为：<br>';
 			echo '正在进行分析的数组'.$the_array_id .'，数据为：<font color="#aaggss" size="5px">';
 			for($j=0; $j<6; $j++){
 				echo $datas[$the_array_id ][$j].',';
 			}
 			echo '</font><br>';
-			
-			// echo '正在进行分析的数组的下一组数据为：<br>';
 			echo '数组的下一组ID为'.($the_array_id + 1).'，数据为：<font color="#aaggss" size="5px">';
 			for($j=0; $j<6; $j++){
 				echo $datas[$the_array_id + 1][$j].',';
@@ -645,19 +602,17 @@ function addOneId(eleId){
 			echo '因为是测试阶段，所以直接测试 目标组与整个5组的并集的 交集和差集情况<br><br>';
 			
 			echo '可以考虑 让目标组与整个前后5组或更多组的并集 进行交集和差集情况<br><br>';
-			// foreach($conbin_array as $key=>$the_array)
-			
+
 			// 作为循环条件
 			$array_counts = count($conbin_array);
 			
 			// 记录交集元素，初始化记录交集的数组为第一组数组
 			$intersect_numbers = $conbin_array[0];
-			
+
 			for($j=0; $j<$array_counts; $j++)
 			{
 				echo '<div id="method_line">';
 				// $conbin_array[$conbin_i] = array_merge($conbin_array[$conbin_i], $datas[$the_id + 1 + $j]);
-				
 				$conbin_array[$j] = array_unique($conbin_array[$j]);
 				$same_n = count($conbin_array[$j]);
 				// echo "共同元素有：".$same_n." 个。".'<br>';
@@ -668,75 +623,46 @@ function addOneId(eleId){
 				$out_i = 0;
 				foreach($conbin_array[$j] as $key11=>$the_number11)
 				{
-					// echo "第 ".$key2." 个符合的值： ".$value2.'<br>';
-					// echo 'id:'.$key.'---'.$the_number11.',';
-					// echo "第 ".$key11.'--'.$the_number11.',';
 					echo $the_number11.',';
 					if($out_i == 15){ echo '<br>';}
 					++ $out_i;
 				}
 				 echo '<br><br>';
-				
 				$same_numbers = array_intersect($conbin_array[$j], $datas[$the_array_id]);
 				$same_n = count($same_numbers);
-				// echo "共同元素有：".$same_n." 个。".'<br>';
 				echo "与此组的共同元素有：".$same_n." 个。".'<br>';
 				foreach($same_numbers as $key1=>$the_number)
 				{
 					echo $the_number.',';
 				}
-				// echo '<br><br>';
 				echo '<br>';
 				
 				$same_numbers1 = array_intersect($conbin_array[$j], $datas[$the_array_id+1]);
 				$same_n = count($same_numbers1);
-				// echo "";
 				echo "<font style='font-size:13; color:red;'>与正在预测的下一组数组有：".$same_n." 个(有些是重复的)。</font>".'<br>';
 				if($same_n == 6){ echo "这可能是本组自己——————————————————"; }
-				// echo "";
 				foreach($same_numbers1 as $key2=>$the_number2)
 				{
 					echo $the_number2.',';
 				}
-				// echo '<br>';
-				// foreach($datas[$the_array_id+1] as $key2=>$the_number2)
-				// {
-					// echo $the_number2.',';
-				// }
-				// echo '<br><br>';
 				echo '<br>';
 				
-				// if($intersect_numbers != $conbin_array[$j])
-				// {
-					// $intersect_numbers = array_intersect($intersect_numbers, $conbin_array[$j]);
-					// $same_n = count($intersect_numbers);
-					
-					// // echo "共同元素有：".$same_n." 个。".'<br>';
-					// echo "共同元素有：".$same_n." 个。".'<br>';
-					// foreach($intersect_numbers as $key1=>$the_number)
-					// {
-						// // echo "第 ".$key2." 个符合的值： ".$value2.'<br>';
-						// echo $the_number.',';
-					// }
-				// }
-				
-				
-					echo '<div id="method_line">';
-					// 元素值的个数
-					// 统计数组内各个值出现过的次数
-					// $values_count = array_count_values($count_this_array);
-					$values_count = array_count_values($conbin_array[$j]);
-					foreach($values_count as $id_key=>$count_this_array)
-					{	
-								// echo "差集结果：".$id_key.'--'.$count_this_array.'。<br>';
-						// if($values_count[$count_this_array] >= 2)
-						if($values_count[$id_key] >= 2)
-						// if( is_array($count_this_array) && $values_count['0'] <= 7)
-						{
-								echo "差集结果   $$$$$$$$$：".$count_this_array.'。<br>';
-						}
-					}	
-					echo '</div>';	
+				echo '<div id="method_line">';
+				// 元素值的个数
+				// 统计数组内各个值出现过的次数
+				// $values_count = array_count_values($count_this_array);
+				$values_count = array_count_values($conbin_array[$j]);
+				foreach($values_count as $id_key=>$count_this_array)
+				{	
+							// echo "差集结果：".$id_key.'--'.$count_this_array.'。<br>';
+					// if($values_count[$count_this_array] >= 2)
+					if($values_count[$id_key] >= 2)
+					// if( is_array($count_this_array) && $values_count['0'] <= 7)
+					{
+							echo "差集结果   $$$$$$$$$：".$count_this_array.'。<br>';
+					}
+				}	
+				echo '</div>';	
 					
 				// // 元素值的个数
 				// foreach($conbin_array[$j] as $id_key=>$count_this_array)

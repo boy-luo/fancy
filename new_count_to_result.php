@@ -186,30 +186,31 @@ $timestart=microtime();
 		$forecastMax_arr = array();  // 把上面计算统计出来的依据当前两组数据得出的下一组中 1-33 的权重进行排序
 		$numMax = array();   // 存放自己想要的权重排在前几的数，既是预测选取结果
 		$numMin = array();   // 存放自己想要的最冷的几个数，既是预测的最冷的号码
-		
+		$MinCount = 0; // 找出最冷的$MinCount个关联
 		$top = 8;  // 对$top个数进行排序
 		for ($i=0; $i < $top; $i++) {  // 选出频次前$top个的数
 			$tempMax = 0; // 用于寻找当前最大的数
 			$tempMin = 33; // 用于寻找当前最小的数
 			for ($j=0; $j < 33; $j++) {    
-				每次在33个数中去找出下一个最大的数
-				if ($tempMax < $forecast[$j+1] && ! in_array(($j+1), $numMax)) {
-					$tempMax = $forecast[$j+1].'----'.($j+1);
-					$tempMax_n = $j+1;
-				}
-				// else 
-				// if ($tempMin > $forecast[$j+1] && ! in_array(($j+1), $numMin) && $MinCount<3) {
-				// // $MinCount<3表示最少的冷号只找3个就行(因为主要参考热号)
-				// // else去找次数出现最少的，即是冷号(用于结合最冷的和最热的进行判断)
-				// 	$tempMin = $forecast[$j+1].'--'.($j+1);
-				// 	$tempMin_n = $j+1;
-				// 	$MinCount ++; // 只寻找最后最小的$MinCount个数而已
+				// // 每次在33个数中去找出下一个最大的数
+				// if ($tempMax < $forecast[$j+1] && ! in_array(($j+1), $numMax)) {
+				// 	$tempMax = $forecast[$j+1].'----'.($j+1);
+				// 	$tempMax_n = $j+1;
 				// }
+				// else 
+				if ($tempMin > $forecast[$j+1] && ! in_array(($j+1), $numMin)) {
+				// if ($tempMin > $forecast[$j+1] && ! in_array(($j+1), $numMin) && $MinCount<3) {
+				// $MinCount<3表示最少的冷号只找3个就行(因为主要参考热号)
+				// else去找次数出现最少的，即是冷号(用于结合最冷的和最热的进行判断)
+					$tempMin = $forecast[$j+1].'--'.($j+1);
+					$tempMin_n = $j+1;
+					$MinCount ++; // 只寻找最后最小的$MinCount个数而已
+				}
 			}
-			$forecastMax_arr[] = $tempMax;
-			// $forecastMin_arr[] = $tempMin;
-			$numMax[] = $tempMax_n;  // 用于上面排序时判断是否已经被选出过
-			// $numMin[] = $tempMin_n;  // 用于上面排序时判断是否已经被选出过
+			// $forecastMax_arr[] = $tempMax;
+			// $numMax[] = $tempMax_n;  // 用于上面排序时判断是否已经被选出过
+			$forecastMin_arr[] = $tempMin;
+			$numMin[] = $tempMin_n;  // 用于上面排序时判断是否已经被选出过
 		}
 
 		echo "经过排序后的1-33的权重：";

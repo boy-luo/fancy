@@ -386,3 +386,19 @@ position:relative;
 float:left;
 background:#d2691e;
 }
+/* 
+添加：把每个数的每一列排列整齐。
+2015.6.24
+ */
+.num{
+width:24px;
+height:18px;
+text-align:center;
+float:left;
+}
+.nums{
+width:90%;
+border:solid 1px;
+text-align:center;
+float:left;
+}
